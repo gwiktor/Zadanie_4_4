@@ -1,24 +1,19 @@
 import logging
 
-#Tworzenie logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filename="logfile.log")
 
 print("Witam w kalkulatorze Wiktora! \n")
 
 def dodawanie (a,b):
-  #Funkcja dodawania
   return a + b
 
 def odejmowanie (a,b):
-  #Funkcja odejmowania
   return a - b
 
 def mnożenie (a,b):
-  #Funkcja mnożenia
   return a * b
 
 def dzielenie (a,b):
-  #Funkcja dzielenia
   return a / b
 
 
