@@ -1,11 +1,15 @@
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filename="logfile.log")
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 print("Witam w kalkulatorze Wiktora! \n")
 
-def dodawanie (a,b):
-  return a + b
+#Funkcje poszczególnych działań
+def dodawanie (a):
+  wynik = 0
+  for skladnik in a:
+    wynik += skladnik
+  print (f"Wynik dodawania to: {wynik}")
 
 def odejmowanie (a,b):
   return a - b
@@ -16,27 +20,50 @@ def mnożenie (a,b):
 def dzielenie (a,b):
   return a / b
 
-
-dzialanie = int(input("Podaj działanie, posługjąc się odpowiednią liczbą: \n1 - dodawanie \n2 - odejmowanie \n3 - mnożenie \n4 - dzielenie"))
-a = float(input("Podaj składnik 1: "))
-b = float(input("Podaj składnik 2: "))
-
-
-if dzialanie == 1:
-  logging.info("Dodaję", a, "i", b, "\nWynik to ", dodawanie(a, b))
-  dodawanie(a,b)
+#Funkcja wyboru działania
+def wybor_dzialania(dzialanie):
+  if dzialanie == 1:
+    logging.info("Podaj liczby, które chcesz do siebie dodać zatwierdzając każdą enterem. Następnie wpisz komendę 'koniec' i zatwierdz enterem")
+    try:
+      a = []
+      while True:
+        a.append(float(input()))
+    except ValueError:
+      logging.debug("Wprowadzono następujące liczby: ", a)
+      dodawanie(a)
+  elif dzialanie == 2:
+    try:
+      while True:
+        a = float(input("Podaj składnik 1: "))
+        b = float(input("Podaj składnik 2: "))
+        logging.debug(f"Odejmuję {b} od {a} \nWynik to {odejmowanie(a, b)}")
+        odejmowanie(a, b)
+    except ValueError:
+      print("Nie wprowadzono liczby")
+  elif dzialanie == 3:
+    try:
+      while True:
+        a = float(input("Podaj składnik 1: "))
+        b = float(input("Podaj składnik 2: "))
+        logging.debug(f"Mnożę {a} razy {b} \nWynik to {mnożenie(a,b)}")
+        mnożenie(a, b)
+    except ValueError:
+      print("Nie wprowadzono liczby")
+  elif dzialanie == 4:
+    try:
+      while True:
+        a = float(input("Podaj składnik 1: "))
+        b = float(input("Podaj składnik 2: "))
+        logging.debug(f"Dzielę {a} przez {b} \nWynik to {dzielenie(a, b)}")
+        dzielenie(a,b)
+    except ValueError:
+      print("Nie wprowadzono liczby")
+  else:
+    logging.debug("Wybrałeś niepoprawne działanie")
   
-elif dzialanie == 2:
-  logging.info("Odejmuję", b, "od", a, "\nWynik to", odejmowanie(a, b))
-  odejmowanie(a, b)
+#Wywołanie programu
+if __name__ == "__main__":
+  wybor = int(input("Podaj działanie, posługjąc się odpowiednią liczbą: \n1 - dodawanie \n2 - odejmowanie \n3 - mnożenie \n4 - dzielenie"))
+  logging.debug("Zostało wywołane działanie numer", wybor)
+  wybor_dzialania(wybor)
 
-elif dzialanie == 3:
-  logging.info("Mnożę", a, "razy", b, "\nWynik to", mnożenie(a,b))
-  mnożenie(a, b)
-  
-elif dzialanie == 4:
-  logging.info("Dzielę", a, "przez", b, "\nWynik to", dzielenie(a, b))
-  dzielenie(a,b)
-  
-else:
-  logging.info("Wybrałeś niepoprawne działanie")
