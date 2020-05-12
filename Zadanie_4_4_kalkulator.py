@@ -29,7 +29,7 @@ def wybor_dzialania(dzialanie):
       while True:
         a.append(float(input()))
     except ValueError:
-      logging.debug("Wprowadzono następujące liczby: ", a)
+      logging.debug(f"Wprowadzono następujące liczby: {a}")
       dodawanie(a)
   elif dzialanie == 2:
     try:
@@ -63,7 +63,7 @@ def wybor_dzialania(dzialanie):
   
 #Wywołanie programu
 if __name__ == "__main__":
-  wybor = int(input("Podaj działanie, posługjąc się odpowiednią liczbą: \n1 - dodawanie \n2 - odejmowanie \n3 - mnożenie \n4 - dzielenie"))
-  logging.debug("Zostało wywołane działanie numer", wybor)
-  wybor_dzialania(wybor)
+  dzialanie = int(input("Podaj działanie, posługjąc się odpowiednią liczbą: \n1 - dodawanie \n2 - odejmowanie \n3 - mnożenie \n4 - dzielenie"))
+  logging.debug(f"Zostało wywołane działanie numer {dzialanie}")
+  wybor_dzialania(dzialanie)
 
