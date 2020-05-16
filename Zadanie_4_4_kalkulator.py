@@ -1,21 +1,15 @@
 import logging
+import sys
+import math
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 print("Witam w kalkulatorze Wiktora! \n")
 
 #Funkcje poszczególnych działań
-def dodawanie (a):
-  wynik = 0
-  for skladnik in a:
-    wynik += skladnik
-  print (f"Wynik dodawania to: {wynik}")
 
 def odejmowanie (a,b):
   return a - b
-
-def mnożenie (a,b):
-  return a * b
 
 def dzielenie (a,b):
   return a / b
@@ -23,14 +17,10 @@ def dzielenie (a,b):
 #Funkcja wyboru działania
 def wybor_dzialania(dzialanie):
   if dzialanie == 1:
-    logging.info("Podaj liczby, które chcesz do siebie dodać zatwierdzając każdą enterem. Następnie wpisz komendę 'koniec' i zatwierdz enterem")
-    try:
-      a = []
-      while True:
-        a.append(float(input()))
-    except ValueError:
-      logging.debug(f"Wprowadzono następujące liczby: {a}")
-      dodawanie(a)
+    sys.argv = input("Podaj liczby, które chcesz do siebie dodać rozdzielając każdą spacją. Następnie zatwierdz enterem: ")
+    suma = sum(float(arg) for arg in sys.argv if arg.isdigit())
+    logging.debug(f"Suma wynosi: {suma}")
+
   elif dzialanie == 2:
     try:
       while True:
@@ -40,15 +30,12 @@ def wybor_dzialania(dzialanie):
         odejmowanie(a, b)
     except ValueError:
       print("Nie wprowadzono liczby")
+  
   elif dzialanie == 3:
-    try:
-      while True:
-        a = float(input("Podaj składnik 1: "))
-        b = float(input("Podaj składnik 2: "))
-        logging.debug(f"Mnożę {a} razy {b} \nWynik to {mnożenie(a,b)}")
-        mnożenie(a, b)
-    except ValueError:
-      print("Nie wprowadzono liczby")
+    sys.argv = input("Podaj liczby, które chcesz ze sobą pomnożyć rozdzielając każdą spacją. Następnie zatwierdz enterem: ")
+    iloczyn = math.prod(float(arg) for arg in sys.argv if arg.isdigit())
+    logging.debug(f"Iloczyn wynosi: {iloczyn}")
+
   elif dzialanie == 4:
     try:
       while True:
@@ -58,6 +45,7 @@ def wybor_dzialania(dzialanie):
         dzielenie(a,b)
     except ValueError:
       print("Nie wprowadzono liczby")
+  
   else:
     logging.debug("Wybrałeś niepoprawne działanie")
   
