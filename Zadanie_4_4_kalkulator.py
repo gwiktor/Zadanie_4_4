@@ -8,6 +8,12 @@ print("Witam w kalkulatorze Wiktora! \n")
 
 #Funkcje poszczególnych działań
 
+def dodawanie(*args):
+
+  suma = sum(float(args))
+  logging.debug(f"Suma wynosi: {suma}")
+  return suma
+
 def odejmowanie (a,b):
   return a - b
 
@@ -17,10 +23,13 @@ def dzielenie (a,b):
 #Funkcja wyboru działania
 def wybor_dzialania(dzialanie):
   if dzialanie == 1:
-    sys.argv = input("Podaj liczby, które chcesz do siebie dodać rozdzielając każdą spacją. Następnie zatwierdz enterem: ")
-    suma = sum(float(arg) for arg in sys.argv if arg.isdigit())
+    args = input("Podaj liczby do dodania")
+    dodawanie(args)
+    '''
+    a = input("Podaj liczby, które chcesz do siebie dodać rozdzielając każdą spacją. Następnie zatwierdz enterem: ")
+    suma = sum(float(arg) for arg in a.split() if arg.isdigit())
     logging.debug(f"Suma wynosi: {suma}")
-
+'''
   elif dzialanie == 2:
     try:
       while True:
@@ -32,8 +41,8 @@ def wybor_dzialania(dzialanie):
       print("Nie wprowadzono liczby")
   
   elif dzialanie == 3:
-    sys.argv = input("Podaj liczby, które chcesz ze sobą pomnożyć rozdzielając każdą spacją. Następnie zatwierdz enterem: ")
-    iloczyn = math.prod(float(arg) for arg in sys.argv if arg.isdigit())
+    a = input("Podaj liczby, które chcesz ze sobą pomnożyć rozdzielając każdą spacją. Następnie zatwierdz enterem: ")
+    iloczyn = math.prod(float(arg) for arg in a.split() if arg.isdigit())
     logging.debug(f"Iloczyn wynosi: {iloczyn}")
 
   elif dzialanie == 4:
