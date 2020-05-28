@@ -37,14 +37,16 @@ dzialania = {
 #Funkcja wyboru działania
 def wybor_dzialania(dzialanie):
   if dzialanie == 1 or dzialanie == 3:
-    a = list(map(int, input("Wprowadz liczby oddzielając spacją: ").split()))
-    wynik = dzialania[dzialanie](*a)
+    args = list(map(int, input("Wprowadz liczby oddzielając spacją: ").split()))
   elif dzialanie == 2 or dzialanie == 4:
     a = int(input("Podaj pierwszy składnik: "))
     b = int(input("Podaj drugi składnik: "))
-    wynik = dzialania[dzialanie](a, b)
+    args = (a, b)
   else:
     logging.debug("Wybrałeś niepoprawne działanie")
+    return
+  wynik = dzialania[dzialanie](*args)
+  return wynik
 
 #Wywołanie programu
 if __name__ == "__main__":
